@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>525626786878-vqd9l4alsq86vbecqg9j54c86ets4kj8.apps.googleusercontent.com</string>
+	<string>REDACTED</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.525626786878-vqd9l4alsq86vbecqg9j54c86ets4kj8</string>
+	<string>REDACTED</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAC60o00FR3LDFo5frSTL0hIVIdxVPMa_Q</string>
+	<string>REDACTED</string>
 	<key>GCM_SENDER_ID</key>
-	<string>525626786878</string>
+	<string>REDACTED</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.arrinal.QHI-Admin</string>
+	<string>REDACTED</string>
 	<key>PROJECT_ID</key>
-	<string>quote-hari-ini</string>
+	<string>REDACTED</string>
 	<key>STORAGE_BUCKET</key>
-	<string>quote-hari-ini.appspot.com</string>
+	<string>REDACTED</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:525626786878:ios:8d6941d1111cbcd87afd6f</string>
+	<string>REDACTED</string>
 </dict>
 </plist>

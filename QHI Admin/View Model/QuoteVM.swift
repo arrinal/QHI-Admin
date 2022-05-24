@@ -121,6 +121,8 @@ class QuoteListVM {
     }
     
     func uncheckPreviousQuoteFirebase() {
+        
+        guard filteredQuoteForUncheckFirebase.firebaseID != "" else { return }
         let query = db.collection("quote").document(filteredQuoteForUncheckFirebase.firebaseID)
         query.updateData(["isQuoteOfTheDay": false])
     }
@@ -130,15 +132,15 @@ class QuoteListVM {
     }
     
     func checklistNewQuoteFirebase(indexPath: IndexPath) {
-        let newQuoteClicked = db.collection("quote").document(quoteList[indexPath.row].firebaseID)
+        let newQuoteClicked = db.collection("quote").document(quoteList[quoteList.count - 1 - indexPath.row].firebaseID)
         newQuoteClicked.updateData(["isQuoteOfTheDay": true])
     }
     
     func sendPushNotification(indexPath: IndexPath) {
         var pushNotifID = PushNotification()
         
-        let quote = quoteList[indexPath.row].quoteText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let author = quoteList[indexPath.row].author.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let quote = quoteList[quoteList.count - 1 - indexPath.row].quoteText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let author = quoteList[quoteList.count - 1 - indexPath.row].author.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
         var request = URLRequest(url: URL(string: "https://arrinal.com/quotehariini/send.php?quote=\(quote ?? "")&author=\(author ?? "")")!)
         request.httpMethod = "POST"
@@ -157,5 +159,17 @@ class QuoteListVM {
                 print("error parsing")
             }
         }.resume()
+    }
+    
+    func deleteRow(indexPath: IndexPath) -> String {
+        let firebaseIDToRemove = quoteList[quoteList.count - 1 - indexPath.row].firebaseID
+        quoteList.remove(at: ((quoteList.count) - 1 - indexPath.row))
+        
+        return firebaseIDToRemove
+    }
+    
+    func deleteRowFirebase(indexPath: IndexPath) {
+        let row = db.collection("quote").document(deleteRow(indexPath: indexPath))
+        row.delete()
     }
 }

@@ -91,7 +91,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, VMDelegate
         
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as! CustomTableViewCell
         
-        cell.configure(checkbox: quoteListVM.quoteList[indexPath.row].isQuoteOfTheDay ?  Checkbox.checklist.rawValue : Checkbox.unchecklist.rawValue, text: "\(quoteListVM.quoteList[indexPath.row].quoteText)")
+        cell.configure(checkbox: quoteListVM.quoteList[quoteListVM.quoteList.count - 1 - indexPath.row].isQuoteOfTheDay ?  Checkbox.checklist.rawValue : Checkbox.unchecklist.rawValue, text: "\(quoteListVM.quoteList[quoteListVM.quoteList.count - 1 - indexPath.row].quoteText)")
         
         return cell
     }
@@ -101,7 +101,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, VMDelegate
         DispatchQueue.main.async {
             self.quoteListVM.uncheckPreviousQuote(quotes: self.quoteListVM.quoteList)
             self.quoteListVM.uncheckPreviousQuoteFirebase()
-            self.quoteListVM.checklistNewQuote(quote: &self.quoteListVM.quoteList[indexPath.row])
+            self.quoteListVM.checklistNewQuote(quote: &self.quoteListVM.quoteList[self.quoteListVM.quoteList.count - 1 - indexPath.row])
             self.quoteListVM.checklistNewQuoteFirebase(indexPath: indexPath)
             self.quoteListVM.sendPushNotification(indexPath: indexPath)
             
@@ -109,6 +109,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, VMDelegate
         }
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            quoteListVM.deleteRowFirebase(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
 }

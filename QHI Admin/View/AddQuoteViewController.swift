@@ -32,7 +32,7 @@ class AddQuoteViewController: UIViewController {
     var authorTextField: UITextField = {
         let textField = UITextField()
         
-        textField.placeholder = "Title *"
+        textField.placeholder = "Author"
         textField.autocorrectionType = .no
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.borderStyle = .roundedRect

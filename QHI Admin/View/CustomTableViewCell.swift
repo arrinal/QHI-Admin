@@ -8,19 +8,9 @@
 import UIKit
 import Firebase
 
-protocol CustomCellViewDelegate {
-
-    func reloadTableView()
-
-    func saveVM(vm: QuoteListVM)
-}
-
 class CustomTableViewCell: UITableViewCell {
     
     static let identifier = "quoteCell"
-    
-    var quoteListVM = QuoteListVM()
-    var delegate: CustomCellViewDelegate?
     
     let checkbox: UIImageView = {
         
@@ -76,14 +66,14 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
+    public func configure(checkbox: String, text: String ) {
         
-    
-        public func configure(checkbox: String, text: String ) {
-    
-            quoteTextView.text = text
-            self.checkbox.image = UIImage(systemName: checkbox)
-    
-    
-        }
+        quoteTextView.text = text
+        self.checkbox.image = UIImage(systemName: checkbox)
+        
+        
+    }
     
 }

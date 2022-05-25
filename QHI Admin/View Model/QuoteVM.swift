@@ -142,7 +142,7 @@ class QuoteListVM {
         let quote = quoteList[quoteList.count - 1 - indexPath.row].quoteText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let author = quoteList[quoteList.count - 1 - indexPath.row].author.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        var request = URLRequest(url: URL(string: "https://arrinal.com/quotehariini/send.php?quote=\(quote ?? "")&author=\(author ?? "")")!)
+        var request = URLRequest(url: URL(string: "REDACTED")!)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
